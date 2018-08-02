@@ -7,6 +7,10 @@ import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
 import {UserService} from "./shared/service/user.service";
 import {AuthService} from "./shared/service/auth.service";
+import {SystemModule} from "./system/system.module";
+import {BillService} from "./shared/service/bill.service";
+import {CategoryService} from "./shared/service/category.service";
+import {EventService} from "./shared/service/event.service";
 
 
 @NgModule({
@@ -17,9 +21,10 @@ import {AuthService} from "./shared/service/auth.service";
     BrowserModule,
     HttpClientModule,
     AuthModule,
+    SystemModule,
     AppRoutingModule
   ],
-  providers: [UserService, AuthService],
+  providers: [UserService, AuthService, BillService, CategoryService, EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

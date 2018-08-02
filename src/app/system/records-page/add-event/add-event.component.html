@@ -1,0 +1,40 @@
+<div class="col-md-6">
+  <div class="card">
+    <div class="card-header bordered">
+      <div class="header-block">
+        <h3 class="title">Добавить событие</h3>
+      </div>
+    </div>
+    <div class="card-block">
+      <div class="alert alert-{{message.type}} text-center" *ngIf = "message.text">{{message.text}}</div>
+      <form #f="ngForm" (submit)="onSubmit(f)">
+        <div class="form-group">
+          <label class="control-label" for="select-event-category">Выберите категорию</label>
+          <select class="form-control" name="category" id="select-event-category" [ngModel]="'2'" required>
+            <option *ngFor="let c of categories" [value]="c.id">{{c.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Выберите тип</label>
+          <div *ngFor="let t of types">
+            <label>
+              <input class="radio" name="type" type="radio" [value]="t.type" required [ngModel]="'outcome'" >
+              <span>{{t.label}}</span>
+            </label>
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error':amount.invalid && amount.touched}">
+          <label class="control-label" for="amount">Введите сумму</label>
+          <input type="number" name="amount" id="amount" [ngModel]="1" required [min]="1" class="form-control" #amount="ngModel">
+          <span class="form-help-text" *ngIf="amount.invalid && amount.touched">Введите сумму</span>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error':description.invalid && description.touched}">
+          <label class="control-label" for="description">Описание</label>
+          <input class="form-control" type="text" name="description" id="description" ngModel="" required  #description="ngModel">
+          <span class="form-help-text" *ngIf="description.invalid && description.touched">Описание требуется</span>
+        </div>
+        <button type="submit" [disabled]="f.invalid" class="btn btn-primary">Добавить</button>
+      </form>
+    </div>
+  </div>
+</div>

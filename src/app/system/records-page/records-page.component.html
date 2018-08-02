@@ -1,0 +1,15 @@
+<div class="title-block">
+  <h3 class="title">
+    Страница записей <span class="sparkline bar"></span>
+  </h3>
+</div>
+<div *ngIf="!isLoaded" class="text-center"> Loading... </div>
+<section class="section" *ngIf="isLoaded">
+  <div class="row">
+    <hf-add-event [categories]="categories" ></hf-add-event>
+    <hf-add-category (onAddCategory)="onAddCategory($event)"></hf-add-category>
+  </div>
+  <div class="row">
+    <hf-edit-category [categories]="categories" (categoryUpdated)="onCategoryUpdated($event)"></hf-edit-category>
+  </div>
+</section>
