@@ -13,6 +13,7 @@ export class CurrencyCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.currency.rates['USD'] = this.currency.rates['RUB'] / this.currency.rates['USD']
   }
 
 }

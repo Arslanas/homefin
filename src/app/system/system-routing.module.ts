@@ -7,6 +7,7 @@ import {RecordsPageComponent} from "./records-page/records-page.component";
 import {BillingPageComponent} from "./billing-page/billing-page.component";
 import {PlanningPageComponent} from "./planning-page/planning-page.component";
 import {HistoryPageComponent} from "./history-page/history-page.component";
+import {HistoryDetailComponent} from "./history-page/history-detail/history-detail.component";
 
 const routes: Route[] = [
   {
@@ -14,7 +15,8 @@ const routes: Route[] = [
       {path: 'records', component: RecordsPageComponent},
       {path: 'billing', component: BillingPageComponent},
       {path: 'planning', component: PlanningPageComponent},
-      {path: 'history', component: HistoryPageComponent}
+      {path: 'history', component: HistoryPageComponent},
+      {path: 'history/:id', component: HistoryDetailComponent}
     ]
   }
 ];

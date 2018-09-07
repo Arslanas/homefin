@@ -1,4 +1,5 @@
 import {NgModule} from "@angular/core";
+import {NgxChartsModule} from "@swimlane/ngx-charts";
 import {SharedModule} from "../shared/shared.module";
 import {SystemComponent} from "./system.component";
 import { BillingPageComponent } from './billing-page/billing-page.component';
@@ -14,13 +15,21 @@ import { CurrencyCardComponent } from './billing-page/currency-card/currency-car
 import { AddCategoryComponent } from './records-page/add-category/add-category.component';
 import { EditCategoryComponent } from './records-page/edit-category/edit-category.component';
 import { AddEventComponent } from './records-page/add-event/add-event.component';
+import { HistoryChartComponent } from './history-page/history-chart/history-chart.component';
+import { HistoryEventsComponent } from './history-page/history-events/history-events.component';
+import { HistoryDetailComponent } from './history-page/history-detail/history-detail.component';
+import { HistoryFilterComponent } from './history-page/history-filter/history-filter.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {FilterPipe} from "./shared/pipes/filter.pipe";
 
 
 @NgModule(
   {
     imports:[
       SystemRoutingModule,
-      SharedModule
+      SharedModule,
+      BrowserAnimationsModule,
+      NgxChartsModule
     ],
     declarations:[
       SystemComponent,
@@ -35,7 +44,12 @@ import { AddEventComponent } from './records-page/add-event/add-event.component'
       CurrencyCardComponent,
       AddCategoryComponent,
       EditCategoryComponent,
-      AddEventComponent
+      AddEventComponent,
+      HistoryChartComponent,
+      HistoryEventsComponent,
+      HistoryDetailComponent,
+      HistoryFilterComponent,
+      FilterPipe
     ]
   }
 )
