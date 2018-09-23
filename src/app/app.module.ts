@@ -14,6 +14,7 @@ import {BillService} from "./shared/service/bill.service";
 import {CategoryService} from "./shared/service/category.service";
 import {EventService} from "./shared/service/event.service";
 import {FilterPipe} from "./system/shared/pipes/filter.pipe";
+import {CommonModule} from "@angular/common";
 
 
 
@@ -25,7 +26,6 @@ import {FilterPipe} from "./system/shared/pipes/filter.pipe";
     BrowserModule,
     HttpClientModule,
     AuthModule,
-    SystemModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],

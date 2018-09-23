@@ -11,7 +11,7 @@ import {HistoryDetailComponent} from "./history-page/history-detail/history-deta
 
 const routes: Route[] = [
   {
-    path: 'system', component: SystemComponent, children: [
+    path: '', component: SystemComponent, children: [
       {path: 'records', component: RecordsPageComponent},
       {path: 'billing', component: BillingPageComponent},
       {path: 'planning', component: PlanningPageComponent},

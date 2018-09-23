@@ -2,10 +2,10 @@ import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {User} from "../entity/user.entity";
-import {BaseApiService} from "../core/baseApi.service";
+import {BaseApiServerService} from "../core/baseApiServer.service";
 
 @Injectable()
-export class UserService extends BaseApiService{
+export class UserService extends BaseApiServerService{
   constructor(public http: HttpClient){
     super(http)
   }

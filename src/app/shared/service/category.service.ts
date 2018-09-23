@@ -1,11 +1,11 @@
-import {BaseApiService} from "../core/baseApi.service";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {HttpClient} from "@angular/common/http";
 import {Category} from "../entity/category.entity";
+import {BaseApiServerService} from "../core/baseApiServer.service";
 
 @Injectable()
-export class CategoryService extends BaseApiService{
+export class CategoryService extends BaseApiServerService{
   constructor(public http:HttpClient){
     super(http);
   }
@@ -17,7 +17,7 @@ export class CategoryService extends BaseApiService{
     return this.get('categories');
   }
   updateCategory(category: Category):Observable<Category>{
-    return this.put(`categories/${category.id}`, category);
+    return this.put(`categories`, category);
   }
   getCategoryById(id:number):Observable<Category>{
     return this.get(`categories/${id}`);

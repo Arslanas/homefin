@@ -1,11 +1,11 @@
 import {Observable} from "rxjs/Observable";
-import {BaseApiService} from "../core/baseApi.service";
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Event} from "../entity/event.entity";
+import {BaseApiServerService} from "../core/baseApiServer.service";
 
 @Injectable()
-export class EventService extends BaseApiService{
+export class EventService extends BaseApiServerService{
   constructor(public http:HttpClient){
     super(http);
   }

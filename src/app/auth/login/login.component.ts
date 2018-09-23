@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     const data = this.form.value;
     this.userService.getUserByEmail(data.email).subscribe((user:User)=>{
-      console.log(user);
       if (user){
         if(user.password === data.password){
           window.localStorage.setItem("user", JSON.stringify(user));

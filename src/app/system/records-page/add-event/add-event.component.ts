@@ -33,10 +33,10 @@ export class AddEventComponent implements OnInit {
   }
   onSubmit(form:NgForm){
     let{type, amount, category, description} = form.value;
-    const date = new DatePipe('en-US').transform(Date.now(), "dd.MM.yyyy");
+    const date = new DatePipe('en-US').transform(Date.now());
     const event = new Event(type, amount, category, date, description);
 
-    this.billService.getBill().subscribe((bill)=>{
+    this.billService.getBill().subscribe((bill:Bill)=>{
       let value = 0;
       if (type === 'outcome'){
         if (amount > bill.value){
@@ -48,7 +48,7 @@ export class AddEventComponent implements OnInit {
         value = bill.value + amount;
       }
       if(amount <= bill.value || type === 'income'){
-        this.billService.updateBill({value, currency:bill.currency}).mergeMap(()=>this.eventService.addEvent(event))
+        this.billService.updateBill({value: value, currency:bill.currency}).mergeMap(()=>this.eventService.addEvent(event))
           .subscribe(()=>{
             window.setTimeout(this.showMessage(`На вашем счету ${value}`, "success"), 3000);
             form.reset();

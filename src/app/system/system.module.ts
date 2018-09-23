@@ -21,6 +21,7 @@ import { HistoryDetailComponent } from './history-page/history-detail/history-de
 import { HistoryFilterComponent } from './history-page/history-filter/history-filter.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FilterPipe} from "./shared/pipes/filter.pipe";
+import {CommonModule} from "@angular/common";
 
 
 @NgModule(
@@ -28,7 +29,6 @@ import {FilterPipe} from "./shared/pipes/filter.pipe";
     imports:[
       SystemRoutingModule,
       SharedModule,
-      BrowserAnimationsModule,
       NgxChartsModule
     ],
     declarations:[
