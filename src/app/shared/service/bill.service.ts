@@ -1,8 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs/Observable";
 import {Bill} from "../entity/bill.entity";
-import {BaseApiService} from "../core/baseApi.service";
 import {BaseApiServerService} from "../core/baseApiServer.service";
 
 @Injectable()

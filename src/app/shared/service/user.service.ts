@@ -13,6 +13,9 @@ export class UserService extends BaseApiServerService{
   getUserByEmail(email:string):Observable<User>{
     return this.get(`users?email=${email}`).map((user:User[]) => user[0]);
   }
+  getUserByUsername(username:string):Observable<User>{
+    return this.get(`users?username=${username}`).map((user:User[]) => user[0]);
+  }
 
   createUser(user: User):Observable<any>{
     return this.post(`users`, user);

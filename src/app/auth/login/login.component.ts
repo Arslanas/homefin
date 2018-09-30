@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../shared/service/user.service";
 import {User} from "../../shared/entity/user.entity";
 import {Message} from "../../shared/entity/message.entity";
 import {AuthService} from "../../shared/service/auth.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
+import {TokenStorage} from "../../shared/core/tokenStorage.util";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'hf-login',
@@ -17,43 +19,51 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private authService:AuthService,
-    private router:Router,
-    private route:ActivatedRoute
-    ){}
+    private authService: AuthService,
+    private router: Router,
+    private tokenStorage: TokenStorage,
+    private route: ActivatedRoute
+  ) {
+  }
 
   ngOnInit() {
     this.message = new Message('danger', '');
-    this.route.queryParams.subscribe((params: Params)=>{
-      if(params['nowCanLogin']){
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params['nowCanLogin']) {
         this.showMessage('success', 'Вы можете войти в систему');
       }
     })
     this.form = new FormGroup({
-      'email': new FormControl(null, [Validators.required, Validators.email]),
+      'username': new FormControl(null, [Validators.required, Validators.minLength(3)]),
       'password': new FormControl(null, [Validators.required, Validators.minLength(6)])
     });
 
   }
-  onSubmit(){
+
+  onSubmit() {
     const data = this.form.value;
-    this.userService.getUserByEmail(data.email).subscribe((user:User)=>{
-      if (user){
-        if(user.password === data.password){
-          window.localStorage.setItem("user", JSON.stringify(user));
-          this.authService.login();
+    const username = data.username;
+    const password = data.password;
+    this.authService.login(username, password).subscribe(data => {
+        this.tokenStorage.saveToken(data.tokenType + ' ' + data.accessToken);
+        if (data.accessToken) {
           this.message.text = '';
+          this.saveUserToStorage(username);
           this.router.navigate(['/system', 'billing']);
-        } else{
-          this.showMessage("danger", "Пароль не верный");
         }
-      }else {
-        this.showMessage("danger", "Такого пользователя не существует")
       }
-    });
+    );
+
   }
-  private showMessage(type:string, text:string){
+
+  private saveUserToStorage(username:string) {
+      this.userService.getUserByUsername(username).subscribe((user:User)=>{
+        localStorage.setItem('user', JSON.stringify(user));
+      });
+  }
+
+  private showMessage(type: string, text: string) {
     this.message = new Message(type, text);
-    setTimeout((()=>this.message = new Message("danger", '')),5000)
+    setTimeout((() => this.message = new Message("danger", '')), 5000);
   }
 }
