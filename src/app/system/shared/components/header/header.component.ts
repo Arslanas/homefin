@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 export class HeaderComponent implements OnInit {
 
   date : Date = new Date();
-  user:User;
+  user:any;
 
   constructor(private authService: AuthService, private router : Router) { }
 

@@ -9,10 +9,9 @@ export class AuthService{
   constructor( public http: HttpClient ){}
   private isAuthenticated = false;
 
-  login(username: string, password: string):Observable<any> {
+    login(username: string, password: string):Observable<any> {
     const credentials = {username: username, password: password};
-    console.log('trying to authenticate');
-    return this.http.post('http://localhost:8080/auth/signin', credentials);
+    return  this.http.post('http://localhost:8080/auth/signin', credentials);
   }
   register(user:User):Observable<any>{
     const credentials = {username: user.name, password: user.password, name: user.name, email: user.email};

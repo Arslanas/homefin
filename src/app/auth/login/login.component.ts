@@ -45,22 +45,17 @@ export class LoginComponent implements OnInit {
     const username = data.username;
     const password = data.password;
     this.authService.login(username, password).subscribe(data => {
-        this.tokenStorage.saveToken(data.tokenType + ' ' + data.accessToken);
-        if (data.accessToken) {
+        if (data) {
           this.message.text = '';
-          this.saveUserToStorage(username);
+          this.tokenStorage.saveToken(data.response.tokenType + ' ' + data.response.accessToken);
+          localStorage.setItem('user', JSON.stringify({id: data.userId, username: username}));
           this.router.navigate(['/system', 'billing']);
         }
       }
     );
-
   }
 
-  private saveUserToStorage(username:string) {
-      this.userService.getUserByUsername(username).subscribe((user:User)=>{
-        localStorage.setItem('user', JSON.stringify(user));
-      });
-  }
+
 
   private showMessage(type: string, text: string) {
     this.message = new Message(type, text);

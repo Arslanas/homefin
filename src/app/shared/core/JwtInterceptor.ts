@@ -18,18 +18,10 @@ export class JwtInterceptor implements HttpInterceptor {
     let authReq = req;
     const regexp = new RegExp('.data').test(req.url);
     if (regexp){
-      console.log(regexp);
-      console.log('logic for data.fixer');
-      console.log(authReq);
-      console.log(authReq.headers.keys());
         return next.handle(authReq);
     }
     if (this.token.getToken() != null) {
-      console.log(regexp);
-      console.log('logic for services');
-
       authReq = req.clone({headers: req.headers.set(TOKEN_HEADER_KEY, this.token.getToken())});
-      console.log(authReq.headers.keys());
     }
     return next.handle(authReq).do(
       (err: any) => {

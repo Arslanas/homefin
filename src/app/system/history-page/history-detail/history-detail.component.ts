@@ -28,6 +28,7 @@ export class HistoryDetailComponent implements OnInit {
         return this.eventService.getEventById(this.id)}).
         mergeMap((event:Event)=> {
           this.event = event;
+          console.log(event);
           return this.categoryService.getCategoryById(+event.category)
         }).
         subscribe((category:Category)=>{

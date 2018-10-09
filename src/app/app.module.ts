@@ -13,6 +13,7 @@ import {CategoryService} from "./shared/service/category.service";
 import {EventService} from "./shared/service/event.service";
 import {JwtInterceptor} from "./shared/core/JwtInterceptor";
 import {TokenStorage} from "./shared/core/tokenStorage.util";
+import {UserIdInterceptor} from "./shared/core/userIdInterceptor";
 
 
 @NgModule({
@@ -36,6 +37,11 @@ import {TokenStorage} from "./shared/core/tokenStorage.util";
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UserIdInterceptor,
       multi: true
     }
   ],

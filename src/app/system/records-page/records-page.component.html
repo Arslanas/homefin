@@ -6,10 +6,10 @@
 <div *ngIf="!isLoaded" class="text-center"> Loading... </div>
 <section class="section" *ngIf="isLoaded">
   <div class="row">
-    <hf-add-event [categories]="categories" ></hf-add-event>
+    <hf-add-event [categories]="categories" *ngIf="categories.length > 0"></hf-add-event>
     <hf-add-category (onAddCategory)="onAddCategory($event)"></hf-add-category>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="categories.length > 0">
     <hf-edit-category [categories]="categories" (categoryUpdated)="onCategoryUpdated($event)"></hf-edit-category>
   </div>
 </section>

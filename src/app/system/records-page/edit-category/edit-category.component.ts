@@ -13,7 +13,7 @@ export class EditCategoryComponent implements OnInit {
 
   @Input() categories:Category[]=[] ;
   @Output() categoryUpdated = new EventEmitter<Category>();
-  currentCategoryID = 1;
+  currentCategoryID;
   currentCategory:Category;
 
   message:Message = new Message('success', '');
@@ -21,6 +21,7 @@ export class EditCategoryComponent implements OnInit {
   constructor(private categoryService:CategoryService) {}
 
   ngOnInit() {
+    this.currentCategoryID = this.categories[0].id;
     this.onCategoryChanged();
   }
 
@@ -38,7 +39,6 @@ export class EditCategoryComponent implements OnInit {
   }
 
   onCategoryChanged(){
-    console.log(this.currentCategoryID);
     this.currentCategory = this.categories.find(c=> c.id===+this.currentCategoryID);
   }
 }
