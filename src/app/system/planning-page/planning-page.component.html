@@ -3,9 +3,10 @@
     Страница планирования <span class="sparkline bar"></span>
   </h3>
 </div>
-<section class="section text-center" *ngIf="!isFalse">Loading...</section>
-<section class="section" *ngIf="isFalse">
-  <div class="row">
+<section class="section text-center" *ngIf="!isLoaded"><loader-anim></loader-anim></section>
+<section class="section" *ngIf="isLoaded">
+  <span class="section text-center h3" *ngIf="!isOutcome">У вас пока не было расходов</span>
+  <div class="row" *ngIf="isOutcome">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header card-header-sm bordered">

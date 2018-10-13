@@ -3,7 +3,7 @@
     Страница записей <span class="sparkline bar"></span>
   </h3>
 </div>
-<div *ngIf="!isLoaded" class="text-center"> Loading... </div>
+<div *ngIf="!isLoaded" class="text-center"><loader-anim></loader-anim> </div>
 <section class="section" *ngIf="isLoaded">
   <div class="row">
     <hf-add-event [categories]="categories" *ngIf="categories.length > 0"></hf-add-event>

@@ -8,10 +8,15 @@
     </button>
   </div>
 </div>
-<section class="section text-center" *ngIf="!isLoaded">Loading...</section>
+<section class="section text-center" *ngIf="!isLoaded"><loader-anim></loader-anim></section>
 <section *ngIf="isLoaded">
+  <span *ngIf="events.length == 0" >
+    <section class="section text-center h3">У вас пока нет событий</section>
+  </span>
+  <span *ngIf="events.length > 0">
   <hf-history-chart [chartData]="chartData"></hf-history-chart>
   <hf-history-events [categories]="categories" [events]="filteredEvents"></hf-history-events>
+  </span>
   <div *ngIf="isFilterVisible">
     <hf-history-filter [categories]="categories"
                        (filterApplied)="onFilterApply($event)"

@@ -4,24 +4,37 @@ import {Observable} from "rxjs/Observable";
 import {Injectable} from "@angular/core";
 
 @Injectable()
-export class AuthService{
+export class AuthService {
+  url: string = 'http://localhost:8080/';
+//  url:string = 'https://homefin-server.herokuapp.com/';
 
-  constructor( public http: HttpClient ){}
-  private isAuthenticated = false;
+  constructor(public http: HttpClient) {
+  }
 
-    login(username: string, password: string):Observable<any> {
+  login(username: string, password: string): Observable<any> {
     const credentials = {username: username, password: password};
-    return  this.http.post('http://localhost:8080/auth/signin', credentials);
+    return this.http.post(this.getUrl('signin'), credentials);
   }
-  register(user:User):Observable<any>{
+
+  register(user: User): Observable<any> {
     const credentials = {username: user.name, password: user.password, name: user.name, email: user.email};
-    return this.http.post('http://localhost:8080/auth/signup', credentials);
+    return this.http.post(this.getUrl('signup'), credentials);
   }
-  logout(){
-    this.isAuthenticated = false;
+
+  logout() {
     window.localStorage.clear();
   }
-  isLoggedIn(){
-    return this.isAuthenticated;
+
+  isAuthenticated() {
+    const token = localStorage.getItem('AuthToken');
+    if (token && token.startsWith('Bearer')){
+      return true;
+    }else {
+      false
+    }
+  }
+
+  private getUrl(endpoint: string): string {
+    return this.url + 'auth/' + endpoint;
   }
 }

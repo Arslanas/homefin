@@ -8,15 +8,17 @@ import {Component, Input, OnInit} from '@angular/core';
 export class CurrencyCardComponent implements OnInit {
 
   @Input() currency: any;
+  modifiedCurrency:any;
   currencies: string[] = ["USD", "EUR"];
 
   constructor() { }
 
   ngOnInit() {
-    this.currency.rates['USD'] = this.currency.rates['RUB'] / this.currency.rates['USD'];
-    const eur = this.currency.rates['RUB'];
-    this.currency.rates['EUR'] = eur;
-    this.currency.rates['RUB'] = 1;
+    this.modifiedCurrency = JSON.parse(JSON.stringify(this.currency));
+    this.modifiedCurrency.rates['USD'] = this.modifiedCurrency.rates['RUB'] / this.modifiedCurrency.rates['USD'];
+    const eur = this.modifiedCurrency.rates['RUB'];
+    this.modifiedCurrency.rates['EUR'] = eur;
+    this.modifiedCurrency.rates['RUB'] = 1;
   }
 
 }

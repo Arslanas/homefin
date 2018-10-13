@@ -17,8 +17,8 @@ export class PlanningPageComponent implements OnInit {
   bill:Bill;
   categories:Category[];
   events:Event[];
-  isFalse = false;
-
+  isLoaded = false;
+  isOutcome = false;
   constructor(private categoryService: CategoryService,
               private eventService: EventService,
               private billService: BillService) {
@@ -33,7 +33,9 @@ export class PlanningPageComponent implements OnInit {
         this.events = data[0];
         this.bill = data[1];
         this.categories = data[2];
-        this.isFalse = true;
+        this.isLoaded = true;
+        let someOutcome = this.events.find( e=> e.type==='outcome');
+        if (someOutcome)this.isOutcome = true;
     })
   }
 

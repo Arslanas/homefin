@@ -8,14 +8,17 @@
     </button>
   </div>
 </div>
-<div class="text-center" *ngIf = "!isLoaded">
-  Loading...
+<div class="text-center" *ngIf="!isLoaded">
+  <loader-anim></loader-anim>
 </div>
-<div *ngIf = "isLoaded">
+<div *ngIf="isLoaded">
   <section class="section">
     <div class="row">
-      <hf-bill-card [bill]="bill" [currency]="currency"></hf-bill-card>
+      <hf-bill-card [bill]="bill" [euro]="euro" [dollar]="dollar"></hf-bill-card>
       <hf-currency-card [currency]="currency"></hf-currency-card>
+    </div>
+    <div class="row">
+      <hf-edit-bill-card [bill]="bill" (emitter)="onBillChanged($event)" ></hf-edit-bill-card>
     </div>
   </section>
 </div>

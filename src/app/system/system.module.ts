@@ -22,6 +22,8 @@ import { HistoryFilterComponent } from './history-page/history-filter/history-fi
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FilterPipe} from "./shared/pipes/filter.pipe";
 import {CommonModule} from "@angular/common";
+import { EditBillCardComponent } from './billing-page/edit-bill-card/edit-bill-card.component';
+
 
 
 @NgModule(
@@ -49,7 +51,8 @@ import {CommonModule} from "@angular/common";
       HistoryEventsComponent,
       HistoryDetailComponent,
       HistoryFilterComponent,
-      FilterPipe
+      FilterPipe,
+      EditBillCardComponent,
     ]
   }
 )

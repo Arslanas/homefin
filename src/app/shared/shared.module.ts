@@ -1,6 +1,8 @@
 import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
+import { LoaderAnimComponent } from './component/loader-anim/loader-anim.component';
+
 
 @NgModule({
   imports: [
@@ -10,8 +12,10 @@ import {CommonModule} from "@angular/common";
   exports: [
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
-  ]
+    CommonModule,
+    LoaderAnimComponent
+  ],
+  declarations: [LoaderAnimComponent]
 })
 export class SharedModule {
 

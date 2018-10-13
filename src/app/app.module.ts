@@ -14,11 +14,14 @@ import {EventService} from "./shared/service/event.service";
 import {JwtInterceptor} from "./shared/core/JwtInterceptor";
 import {TokenStorage} from "./shared/core/tokenStorage.util";
 import {UserIdInterceptor} from "./shared/core/userIdInterceptor";
+import {AuthGuard} from "./shared/core/AuthGuard";
+import { NotFoundComponent } from './component/not-found/not-found.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import {UserIdInterceptor} from "./shared/core/userIdInterceptor";
       provide: HTTP_INTERCEPTORS,
       useClass: UserIdInterceptor,
       multi: true
-    }
+    },
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

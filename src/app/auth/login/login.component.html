@@ -1,6 +1,6 @@
 <div class="auth-content">
   <p class="text-xs-center">Войдите для работы</p>
-  <div class="alert alert-{{message.type}} text-center" *ngIf = "message.text">{{message.text}}</div>
+  <div @fade class="alert alert-{{message.type}} text-center" *ngIf = "message.text">{{message.text}}</div>
   <form [formGroup]="form" (submit)="onSubmit()">
     <div class="form-group" [ngClass]="{'has-error': form.get('username').invalid && form.get('username').touched}">
       <label for="username">Username</label>

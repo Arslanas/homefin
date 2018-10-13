@@ -1,4 +1,3 @@
-import {BaseApiService} from "./baseApi.service";
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
@@ -6,6 +5,7 @@ import {Observable} from "rxjs/Observable";
 @Injectable()
 export class BaseApiServerService{
   private host:string = "http://localhost:8080/";
+//  private host:string = "https://homefin-server.herokuapp.com/";
 
   constructor(public http:HttpClient){}
 

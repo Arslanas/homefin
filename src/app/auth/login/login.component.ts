@@ -7,11 +7,13 @@ import {AuthService} from "../../shared/service/auth.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {TokenStorage} from "../../shared/core/tokenStorage.util";
 import {Observable} from "rxjs/Observable";
+import {fadeStateTrigger} from "../../shared/animations/fade.animation";
 
 @Component({
   selector: 'hf-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations:[fadeStateTrigger]
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
@@ -32,7 +34,10 @@ export class LoginComponent implements OnInit {
       if (params['nowCanLogin']) {
         this.showMessage('success', 'Вы можете войти в систему');
       }
-    })
+      if (params['accessDenied']){
+        this.showMessage('danger', 'Введите логин и пароль')
+      }
+    } )
     this.form = new FormGroup({
       'username': new FormControl(null, [Validators.required, Validators.minLength(3)]),
       'password': new FormControl(null, [Validators.required, Validators.minLength(6)])
@@ -52,7 +57,11 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/system', 'billing']);
         }
       }
-    );
+      , error =>{
+        if (error.status == 401){
+          this.showMessage('danger', 'Введите правильные данные')
+        }
+      });
   }
 
 

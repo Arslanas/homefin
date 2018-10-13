@@ -1,0 +1,28 @@
+<div class="col col-xs-12 col-sm-12 col-md-6 col-xl-5 stats-col">
+  <div class="card">
+    <div class="card-header bordered">
+      <div class="header-block">
+        <h3 class="title">Редактировать счет</h3>
+      </div>
+    </div>
+    <div class="card-block">
+      <form #f="ngForm" (submit)="onSubmit(f)">
+        <div class="form-group" [ngClass]="{'has-error':bill_.invalid && bill_.touched}">
+          <label class="control-label" for="billID">Введите сумму в рублях</label>
+          <input type="number"
+                 id="billID"
+                 class="form-control"
+                 name="bill"
+                 #bill_="ngModel"
+                 required
+                 ngModel
+                 [ngModel]="bill.value"
+          >
+          <span *ngIf="bill_.invalid && bill_.touched"
+                class="form-help-text">Поле не может быть пустым</span>
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить запрос</button>
+      </form>
+    </div>
+  </div>
+</div>

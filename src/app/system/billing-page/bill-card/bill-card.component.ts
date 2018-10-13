@@ -11,16 +11,12 @@ import {Observable} from "rxjs/Observable";
 export class BillCardComponent implements OnInit {
 
  @Input() bill:Bill;
- @Input() currency:any;
-
- dollar: number;
- euro: number;
+ @Input() dollar: number;
+ @Input() euro: number;
 
   constructor() { }
 
   ngOnInit() {
-    this.euro = this.bill.value/this.currency.rates['RUB'];
-    this.dollar = this.euro*this.currency.rates['USD'];
   }
 
 
