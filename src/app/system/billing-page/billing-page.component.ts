@@ -28,6 +28,8 @@ export class BillingPageComponent implements OnInit {
       this.currency = data[1];
       this.isLoaded = true;
       this.calcCurrency(this.bill);
+      console.log(this.bill);
+      console.log(this.currency);
     });
   }
   onRefresh(){
@@ -40,9 +42,6 @@ export class BillingPageComponent implements OnInit {
       });
   }
   calcCurrency(bill:Bill){
-    console.log(this.currency.rates['RUB']);
-    console.log(this.currency.rates['USD']);
-    console.log(this.currency.rates['EUR']);
     this.euro = bill.value/this.currency.rates['RUB'];
     this.dollar = this.euro*this.currency.rates['USD'];
   }
