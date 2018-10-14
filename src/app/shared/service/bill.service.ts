@@ -20,6 +20,6 @@ export class BillService extends BaseApiServerService{
     return this.post("bill", bill);
   }
   getCurrency(){
-    return this.http.get(`http://data.fixer.io/api/latest?access_key=045c429915bce5ab8772387f75420c28`);
+    return this.http.get(`//data.fixer.io/api/latest?access_key=045c429915bce5ab8772387f75420c28`);
   }
 }
