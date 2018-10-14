@@ -2,7 +2,7 @@
 const express = require('express');
 const http = require('http');
 const path = require('path');
-const api = require('./server/routes/api');
+//const api = require('./server/routes/api');
 const app = express();
 
 // Serve only the static files form the dist directory
