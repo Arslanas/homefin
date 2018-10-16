@@ -35,10 +35,9 @@ export class BillingPageComponent implements OnInit {
   }
   onRefresh(){
     this.isLoaded = false;
-      this.billService.getCurrency().delay(2000)
+      this.billService.getCurrency()
         .subscribe((curr:any)=>{
         this.currency = curr;
-        console.log(this.currency);
         this.isLoaded = true;
       });
   }

@@ -5,6 +5,9 @@ import {BaseApiServerService} from "../core/baseApiServer.service";
 
 @Injectable()
 export class BillService extends BaseApiServerService{
+  private oldCurrencyApi:string = 'http://data.fixer.io/api/latest?access_key=045c429915bce5ab8772387f75420c28';
+  private currencyApi:string = 'https://api.exchangeratesapi.io/latest';
+
   constructor(public http:HttpClient){
     super(http);
   }
@@ -20,6 +23,6 @@ export class BillService extends BaseApiServerService{
     return this.post("bill", bill);
   }
   getCurrency(){
-    return this.http.get(`http://data.fixer.io/api/latest?access_key=045c429915bce5ab8772387f75420c28`);
+    return this.http.get('https://api.exchangeratesapi.io/latest');
   }
 }
