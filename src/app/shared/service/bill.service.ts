@@ -23,6 +23,6 @@ export class BillService extends BaseApiServerService{
     return this.post("bill", bill);
   }
   getCurrency(){
-    return this.http.get('https://api.exchangeratesapi.io/latest');
+    return this.http.get(this.currencyApi);
   }
 }

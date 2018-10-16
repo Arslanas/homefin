@@ -16,7 +16,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let authReq = req;
-    const regexp = new RegExp('.data').test(req.url);
+    const regexp = new RegExp('.(data|exchangeratesapi)').test(req.url);
     if (regexp){
         return next.handle(authReq);
     }
