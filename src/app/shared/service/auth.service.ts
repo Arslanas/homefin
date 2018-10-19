@@ -5,8 +5,8 @@ import {Injectable} from "@angular/core";
 
 @Injectable()
 export class AuthService {
-//  url: string = 'http://localhost:8080/';
-  url:string = 'https://homefin-server.herokuapp.com/';
+  url: string = 'http://localhost:8080/';
+//  url:string = 'https://homefin-server.herokuapp.com/';
 
   constructor(public http: HttpClient) {
   }

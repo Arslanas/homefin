@@ -1,5 +1,6 @@
-<div class=" fade in" >
-  <div class="modal-dialog">
+<div @fade class="backdrop" [ngStyle]="{'display':display}"></div>
+<div  class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" (click)="filterClose()" class="close">
@@ -10,7 +11,8 @@
       <div class="modal-body">
         <div class="form-group">
           <label class="control-label" for="period">Выберите период</label>
-          <select class="form-control" id="period" (change) = "handlePeriodChange($event.target)" [(ngModel)]="selectedPeriod">
+          <select class="form-control" id="period" (change)="handlePeriodChange($event.target)"
+                  [(ngModel)]="selectedPeriod">
             <option *ngFor="let p of timePeriods" [value]="p.type">{{p.label}}</option>
           </select>
         </div>
@@ -50,3 +52,4 @@
     </div>
   </div>
 </div>
+

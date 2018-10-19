@@ -16,6 +16,8 @@ import {TokenStorage} from "./shared/core/tokenStorage.util";
 import {UserIdInterceptor} from "./shared/core/userIdInterceptor";
 import {AuthGuard} from "./shared/core/AuthGuard";
 import { NotFoundComponent } from './component/not-found/not-found.component';
+import {ModalDialogModule} from "ngx-modal-dialog";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
     HttpClientModule,
     AuthModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ModalDialogModule.forRoot()
   ],
   providers: [
     UserService,

@@ -1,20 +1,22 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, ComponentRef, EventEmitter, HostBinding, Input, OnInit, Output} from '@angular/core';
+import {IModalDialog, IModalDialogButton, IModalDialogOptions} from "ngx-modal-dialog";
+import {fadeStateTrigger} from "../../../shared/animations/fade.animation";
 
 @Component({
   selector: 'hf-history-filter',
   templateUrl: './history-filter.component.html',
-  styleUrls: ['./history-filter.component.scss']
+  styleUrls: ['./history-filter.component.scss'],
+  animations:[fadeStateTrigger]
 })
-export class HistoryFilterComponent implements OnInit {
+export class HistoryFilterComponent implements OnInit{
 
   @Output() filterClosed = new EventEmitter<any>();
   @Output() filterApplied = new EventEmitter<any>();
   @Input() categories;
-
+  @Input() display;
   selectedPeriod = 'd';
   selectedCategories=[];
   selectedTypes=[];
-
   timePeriods = [
       {'type':'d', 'label':'День'},
       {'type':'w', 'label':'Неделя'},
@@ -25,18 +27,12 @@ export class HistoryFilterComponent implements OnInit {
     {'type':'outcome', 'label':'Расход'}
   ];
 
-
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
-  filterClose(){
-    this.selectedPeriod = 'd';
-    this.selectedCategories=[];
-    this.selectedTypes=[];
-    this.filterClosed.emit();
-  }
 
   calculateInputParameters(field:string, checked: boolean, value: number){
     if(checked) {
@@ -63,5 +59,12 @@ export class HistoryFilterComponent implements OnInit {
       categories: this.selectedCategories,
       period: this.selectedPeriod
     })
+  }
+
+  filterClose(){
+    this.selectedPeriod = 'd';
+    this.selectedCategories=[];
+    this.selectedTypes=[];
+    this.filterClosed.emit();
   }
 }

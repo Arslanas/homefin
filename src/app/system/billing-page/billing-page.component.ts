@@ -26,8 +26,6 @@ export class BillingPageComponent implements OnInit {
       ).subscribe((data:[Bill,any])=>{
       this.bill = data[0];
       this.currency = data[1];
-      console.log(this.bill);
-      console.log(this.currency);
       this.isLoaded = true;
       this.calcCurrency(this.bill);
 

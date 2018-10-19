@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {Category} from "../../shared/entity/category.entity";
 import {CategoryService} from "../../shared/service/category.service";
 import {EventService} from "../../shared/service/event.service";
@@ -16,10 +16,11 @@ export class HistoryPageComponent implements OnInit {
   filteredEvents: Event[];
   isLoaded = false;
   chartData = [];
-  isFilterVisible = false;
+  display = 'none';
 
   constructor(private categoryService: CategoryService,
-              private eventService: EventService) { }
+              private eventService: EventService
+  ) { }
 
   ngOnInit() {
     Observable.combineLatest(
@@ -31,8 +32,10 @@ export class HistoryPageComponent implements OnInit {
       this.setOrigEvents();
       this.calculateChartData();
       this.isLoaded = true;
+
     })
   }
+
   private setOrigEvents(){
     this.filteredEvents = this.events.slice();
   }
@@ -46,15 +49,13 @@ export class HistoryPageComponent implements OnInit {
       })
     })
   }
-  private toggleFilterVisibility(toggle:boolean){
-    this.isFilterVisible = toggle;
-  }
   onFilterClick(){
-    this.toggleFilterVisibility(true);
+    this.display = 'block';
   }
   onFilterClosed(){
     this.setOrigEvents();
-    this.isFilterVisible = false;
+    this.calculateChartData();
+    this.display = 'none';
   }
   onFilterApply(filteredData){
     this.setOrigEvents();
@@ -63,5 +64,6 @@ export class HistoryPageComponent implements OnInit {
     filter(e=> filteredData.categories.indexOf(e.category.toString()) !== -1);
 
     this.calculateChartData();
+    this.display = 'none';
   }
 }
