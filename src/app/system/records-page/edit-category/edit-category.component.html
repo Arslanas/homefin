@@ -10,8 +10,8 @@
       <div class="form-group ">
         <label class="control-label" for="e-select-category">Выберите категорию</label>
         <select class="form-control" id="e-select-category"
-                [(ngModel)]="currentCategoryID"
-                (change)="onCategoryChanged()"
+                [ngModel]="currentCategory.id"
+                (change)="onCategoryChanged($event)"
         >
           <option *ngFor="let c of categories"
                   [value]="c.id"
@@ -50,6 +50,7 @@
           <span *ngIf="capacity.invalid && capacity.touched" class="form-help-text">Минимальное значение 1</span>
         </div>
         <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Обновить</button>
+        <button type="button" class="btn btn-danger-outline" (click)="delete(currentCategory)" >Удалить</button>
       </form>
     </div>
   </div>

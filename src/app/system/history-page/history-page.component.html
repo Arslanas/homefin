@@ -16,7 +16,11 @@
      </span>
      <span *ngIf="events.length > 0">
      <hf-history-chart [chartData]="chartData"></hf-history-chart>
-     <hf-history-events [categories]="categories" [events]="filteredEvents"></hf-history-events>
+     <hf-history-events [categories]="categories"
+                        [events]="filteredEvents"
+                        (eventDeleted)="onEventDeleted($event)"
+     ></hf-history-events>
+
      </span>
      <hf-history-filter [categories]="categories"
                         (filterApplied)="onFilterApply($event)"

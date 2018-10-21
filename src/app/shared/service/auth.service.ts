@@ -5,8 +5,8 @@ import {Injectable} from "@angular/core";
 
 @Injectable()
 export class AuthService {
-//  url: string = 'http://localhost:8080/';
-  url:string = 'https://homefin-server.herokuapp.com/';
+  url: string = 'http://localhost:8080/';
+//  url:string = 'https://homefin-server.herokuapp.com/';
 
   constructor(public http: HttpClient) {
   }
@@ -17,7 +17,7 @@ export class AuthService {
   }
 
   register(user: User): Observable<any> {
-    const credentials = {username: user.name, password: user.password, name: user.name, email: user.email};
+    const credentials = {username: user.username, password: user.password, name: user.name, email: user.email};
     return this.http.post(this.getUrl('signup'), credentials);
   }
 
@@ -33,7 +33,12 @@ export class AuthService {
       false
     }
   }
-
+  usernameExists(username): Observable<any>{
+    return this.http.get(this.getUrl('usernameExists'), {params:{'username':username}})
+  }
+  emailExists(email): Observable<any>{
+    return this.http.get(this.getUrl('emailExists'), {params:{'email':email}})
+  }
   private getUrl(endpoint: string): string {
     return this.url + 'auth/' + endpoint;
   }

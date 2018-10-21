@@ -4,8 +4,8 @@ import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class BaseApiServerService{
-//  private host:string = "http://localhost:8080/";
-  private host:string = "https://homefin-server.herokuapp.com/";
+  private host:string = "http://localhost:8080/";
+//  private host:string = "https://homefin-server.herokuapp.com/";
 
   constructor(public http:HttpClient){}
 
@@ -20,5 +20,8 @@ export class BaseApiServerService{
   }
   put(url:string = '', data:any = {}):Observable<any>{
     return this.http.put(this.getUrl(url), data);
+  }
+  delete(url:string = ''):Observable<any>{
+    return this.http.delete(this.getUrl(url));
   }
 }

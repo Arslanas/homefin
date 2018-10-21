@@ -11,6 +11,7 @@ export class RecordsPageComponent implements OnInit {
 
   categories:Category[] = [];
   isLoaded = false;
+  currentCategory:Category;
 
   constructor(private categoryService:CategoryService) { }
 
@@ -18,14 +19,26 @@ export class RecordsPageComponent implements OnInit {
     this.categoryService.getCategories().subscribe(categories=>{
       this.categories = categories;
       this.isLoaded = true;
+      this.currentCategory = this.categories[0];
     });
   }
 
   onAddCategory(category:Category){
     this.categories.push(category);
+    this.currentCategory = this.categories[0];
   }
   onCategoryUpdated(category:Category){
    const idx = this.categories.findIndex(c=> c.id === category.id);
    this.categories[idx] = category;
   }
+  onCategoryDeleted(category:Category){
+    this.categoryService.deleteById(category.id).subscribe(()=>{
+      this.categories = this.categories.filter(c=>c.id != category.id);
+      this.currentCategory = this.categories[0];
+    })
+  }
+  onCategoryChanged(category:Category){
+    this.currentCategory = category;
+  }
+
 }

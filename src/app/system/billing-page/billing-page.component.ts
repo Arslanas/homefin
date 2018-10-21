@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Bill} from "../../shared/entity/bill.entity";
 import {Observable} from "rxjs/Observable";
 import {BillService} from "../../shared/service/bill.service";
+import {UserService} from "../../shared/service/user.service";
 
 
 @Component({
@@ -17,7 +18,7 @@ export class BillingPageComponent implements OnInit {
   dollar:number;
   euro:number;
 
-  constructor(private billService:BillService) { }
+  constructor(private billService:BillService, private userService:UserService) { }
 
   ngOnInit() {
     Observable.combineLatest(
@@ -46,5 +47,10 @@ export class BillingPageComponent implements OnInit {
   onBillChanged(bill:Bill){
     this.bill = bill;
     this.calcCurrency(bill);
+  }
+  testUser(){
+    this.userService.getAll().subscribe((data:any[])=>{
+      data.forEach(e=>console.log(e));
+    })
   }
 }

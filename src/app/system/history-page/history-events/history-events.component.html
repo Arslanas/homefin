@@ -49,6 +49,7 @@
               </td>
               <td class="text-lg-center">
                 <a [routerLink]="['./', e.id]" class="btn btn-primary-outline">Открыть</a>
+                <button class="btn btn-danger-outline" (click)="deleteEvent(e)">Удалить</button>
               </td>
             </tr>
             </tbody>

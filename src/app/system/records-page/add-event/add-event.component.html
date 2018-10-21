@@ -10,7 +10,9 @@
       <form #f="ngForm" (submit)="onSubmit(f)">
         <div class="form-group">
           <label class="control-label" for="select-event-category">Выберите категорию</label>
-          <select class="form-control" name="category" id="select-event-category" [ngModel]="'2'" required>
+          <select class="form-control" name="category" id="select-event-category"
+                  [(ngModel)]="categoryId"
+                  required>
             <option *ngFor="let c of categories" [value]="c.id">{{c.name}}</option>
           </select>
         </div>

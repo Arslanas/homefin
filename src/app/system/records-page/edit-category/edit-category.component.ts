@@ -13,22 +13,21 @@ export class EditCategoryComponent implements OnInit {
 
   @Input() categories:Category[]=[] ;
   @Output() categoryUpdated = new EventEmitter<Category>();
-  currentCategoryID;
-  currentCategory:Category;
+  @Output() categoryDeleted = new EventEmitter<Category>();
+  @Output() categoryChanged = new EventEmitter<Category>();
+  @Input() currentCategory:Category;
 
   message:Message = new Message('success', '');
 
   constructor(private categoryService:CategoryService) {}
 
   ngOnInit() {
-    this.currentCategoryID = this.categories[0].id;
-    this.onCategoryChanged();
   }
 
   onSubmit(form:NgForm){
     let {name, capacity} = form.value;
     if (capacity <0 ) capacity *= -1;
-    const category = new Category(name, capacity, +this.currentCategoryID);
+    const category = new Category(name, capacity, +this.currentCategory.id);
     console.log(category);
     this.categoryService.updateCategory(category)
       .subscribe((category:Category)=>{
@@ -38,7 +37,10 @@ export class EditCategoryComponent implements OnInit {
       })
   }
 
-  onCategoryChanged(){
-    this.currentCategory = this.categories.find(c=> c.id===+this.currentCategoryID);
+  onCategoryChanged(event){
+    this.categoryChanged.emit(this.categories.find(c=>c.id === +event.target.value))
+  }
+  delete(category:Category){
+    this.categoryDeleted.emit(category);
   }
 }

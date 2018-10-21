@@ -10,6 +10,11 @@
     <hf-add-category (onAddCategory)="onAddCategory($event)"></hf-add-category>
   </div>
   <div class="row" *ngIf="categories.length > 0">
-    <hf-edit-category [categories]="categories" (categoryUpdated)="onCategoryUpdated($event)"></hf-edit-category>
+    <hf-edit-category [categories]="categories"
+                      (categoryUpdated)="onCategoryUpdated($event)"
+                      (categoryDeleted)="onCategoryDeleted($event)"
+                      (categoryChanged)="onCategoryChanged($event)"
+                      [currentCategory]="currentCategory"
+    ></hf-edit-category>
   </div>
 </section>

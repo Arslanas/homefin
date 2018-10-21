@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Event} from "../../../shared/entity/event.entity";
 import {Category} from "../../../shared/entity/category.entity";
 
@@ -10,7 +10,7 @@ import {Category} from "../../../shared/entity/category.entity";
 export class HistoryEventsComponent implements OnInit {
   @Input() categories: Category[];
   @Input() events: Event[];
-
+  @Output() eventDeleted = new EventEmitter<Event>();
   searchValue = "";
   placeHolder = "Сумма";
   searchField = "amount";
@@ -38,5 +38,8 @@ export class HistoryEventsComponent implements OnInit {
     };
     this.placeHolder = typesMap[criteria];
     this.searchField  = criteria;
+  }
+  deleteEvent(event){
+    this.eventDeleted.emit(event);
   }
 }

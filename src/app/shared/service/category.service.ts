@@ -22,4 +22,7 @@ export class CategoryService extends BaseApiServerService{
   getCategoryById(id:number):Observable<Category>{
     return this.get(`categories/${id}`);
   }
+  deleteById(id:number): Observable<any> {
+    return this.delete(`categories/${id}`);
+  }
 }

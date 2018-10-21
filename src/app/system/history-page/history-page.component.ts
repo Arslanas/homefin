@@ -59,11 +59,27 @@ export class HistoryPageComponent implements OnInit {
   }
   onFilterApply(filteredData){
     this.setOrigEvents();
-    this.filteredEvents = this.filteredEvents.
-    filter(e=> filteredData.types.indexOf(e.type) !== -1).
-    filter(e=> filteredData.categories.indexOf(e.category.toString()) !== -1);
-
+    if(filteredData.types.length > 0 && filteredData.categories.length == 0){
+      this.filteredEvents = this.filteredEvents.
+      filter(e=> filteredData.types.indexOf(e.type) !== -1);
+    }
+    if (filteredData.types.length == 0 && filteredData.categories.length > 0){
+      this.filteredEvents = this.filteredEvents.
+      filter(e=> filteredData.categories.indexOf(e.category.toString()) !== -1);
+    }
+    if (filteredData.types.length > 0 && filteredData.categories.length > 0){
+      this.filteredEvents = this.filteredEvents.
+      filter(e=> filteredData.types.indexOf(e.type) !== -1).
+      filter(e=> filteredData.categories.indexOf(e.category.toString()) !== -1);
+    }
     this.calculateChartData();
     this.display = 'none';
+  }
+  onEventDeleted(event:Event){
+    this.eventService.deleteEvent(event.id).subscribe(()=>{
+      this.events = this.events.filter(e => e.id != event.id);
+      this.filteredEvents = this.filteredEvents.filter(e=> e.id != event.id);
+      this.calculateChartData();
+    })
   }
 }
