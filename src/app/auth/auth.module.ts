@@ -4,12 +4,14 @@ import {RegistrationComponent} from './registration/registration.component';
 import {AuthComponent} from "./auth.component";
 import {AuthRoutingModule} from "./auth-routing.module";
 import {SharedModule} from "../shared/shared.module";
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegistrationComponent,
-    AuthComponent
+    AuthComponent,
+    AboutComponent
   ],
   imports: [
     AuthRoutingModule,
