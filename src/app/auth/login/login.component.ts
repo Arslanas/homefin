@@ -16,6 +16,7 @@ import {fadeStateTrigger} from "../../shared/animations/fade.animation";
 export class LoginComponent implements OnInit {
   form: FormGroup;
   message: Message;
+  messageDelay: Message;
   isAuthenticationDialogOpen: boolean = true;
 
   constructor(
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.message = new Message('danger', '');
+    this.messageDelay = new Message('danger', '');
     this.route.queryParams.subscribe((params: Params) => {
       if (params['nowCanLogin']) {
         this.showMessage('success', 'Вы можете войти в систему');
@@ -43,12 +45,18 @@ export class LoginComponent implements OnInit {
     });
 
   }
-
+  private warnAboutDelay(){
+    setTimeout(()=>
+    this.messageDelay = new Message("warning", "Eсли аутентификация длится долго, пожалуйста, обновите страницу - " +
+                                                                               "издержки бесплатного тарифа"), 7000)
+    setTimeout(()=> this.messageDelay = new Message("danger", ""), 12000);
+  }
   onSubmit() {
     this.isAuthenticationDialogOpen = false;
     const data = this.form.value;
     const username = data.username;
     const password = data.password;
+    this.warnAboutDelay();
     this.authService.login(username, password).subscribe(data => {
         if (data) {
           this.message.text = '';
@@ -61,14 +69,15 @@ export class LoginComponent implements OnInit {
       , error => {
         if (error.status == 401) {
           this.isAuthenticationDialogOpen = true;
+          this.messageDelay = new Message('danger', '');
           this.showMessage('danger', 'Введите правильные данные')
         }
-      });
+      })
   }
 
 
   private showMessage(type: string, text: string) {
     this.message = new Message(type, text);
-    setTimeout((() => this.message = new Message("danger", '')), 5000);
+    setTimeout(() => this.message = new Message("danger", ''), 5000);
   }
 }

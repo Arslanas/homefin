@@ -1,6 +1,9 @@
 <div class="auth-content">
 
-  <div *ngIf="!isAuthenticationDialogOpen"><loader-anim></loader-anim></div>
+  <div *ngIf="!isAuthenticationDialogOpen">
+    <loader-anim></loader-anim>
+    <div @fade class="alert alert-{{messageDelay.type}} text-center" *ngIf="messageDelay.text">{{messageDelay.text}}</div>
+  </div>
   <div *ngIf="isAuthenticationDialogOpen">
     <p class="text-xs-center">Войдите для работы</p>
     <div @fade class="alert alert-{{message.type}} text-center" *ngIf="message.text">{{message.text}}</div>
