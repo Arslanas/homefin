@@ -67,9 +67,9 @@ export class LoginComponent implements OnInit {
         }
       }
       , error => {
+        this.messageDelay = new Message('danger', '');
         if (error.status == 401) {
           this.isAuthenticationDialogOpen = true;
-          this.messageDelay = new Message('danger', '');
           this.showMessage('danger', 'Введите правильные данные')
         }
       })
