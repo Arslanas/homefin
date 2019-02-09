@@ -33,7 +33,6 @@ export class HistoryFilterComponent implements OnInit{
   ngOnInit() {
   }
 
-
   calculateInputParameters(field:string, checked: boolean, value: number){
     if(checked) {
       this[field].indexOf(value) === -1 ? this[field].push(value) : null;
@@ -41,18 +40,15 @@ export class HistoryFilterComponent implements OnInit{
       this[field]= this[field].filter(e=> e !== value);
     }
   }
-
   handlePeriodChange({value}){
     this.selectedPeriod = value;
   }
-
   handleChangeType({checked, value}){
     this.calculateInputParameters('selectedTypes', checked, value);
   }
   handleChangeCategory({checked, value}){
     this.calculateInputParameters('selectedCategories', checked, value);
   }
-
   filterApply(){
     this.filterApplied.emit({
       types: this.selectedTypes,
@@ -60,7 +56,6 @@ export class HistoryFilterComponent implements OnInit{
       period: this.selectedPeriod
     })
   }
-
   filterClose(){
     this.selectedPeriod = 'd';
     this.selectedCategories=[];

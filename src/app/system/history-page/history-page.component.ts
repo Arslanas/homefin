@@ -17,6 +17,7 @@ export class HistoryPageComponent implements OnInit {
   isLoaded = false;
   chartData = [];
   display = 'none';
+  isSearchReady = false;
 
   constructor(private categoryService: CategoryService,
               private eventService: EventService
@@ -30,8 +31,8 @@ export class HistoryPageComponent implements OnInit {
       this.events = data[0];
       this.categories = data[1];
       this.setOrigEvents();
-      this.calculateChartData();
       this.isLoaded = true;
+      this.calculateChartData();
 
     })
   }

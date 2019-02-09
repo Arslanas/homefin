@@ -11,6 +11,7 @@ export class HistoryEventsComponent implements OnInit {
   @Input() categories: Category[];
   @Input() events: Event[];
   @Output() eventDeleted = new EventEmitter<Event>();
+  @Input() isSearchReady;
   searchValue = "";
   placeHolder = "Сумма";
   searchField = "amount";
