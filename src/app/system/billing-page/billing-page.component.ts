@@ -3,6 +3,7 @@ import {Bill} from "../../shared/entity/bill.entity";
 import {Observable} from "rxjs/Observable";
 import {BillService} from "../../shared/service/bill.service";
 import {UserService} from "../../shared/service/user.service";
+import {CurrencyHF} from "../../shared/entity/appEntity/CurrencyHF";
 
 
 @Component({
@@ -15,8 +16,7 @@ export class BillingPageComponent implements OnInit {
   bill:Bill;
   currency:any;
   isLoaded = false;
-  dollar:number;
-  euro:number;
+  currencyValue: CurrencyHF;
 
   constructor(private billService:BillService, private userService:UserService) { }
 
@@ -28,8 +28,8 @@ export class BillingPageComponent implements OnInit {
       this.bill = data[0];
       this.currency = data[1];
       this.isLoaded = true;
-      this.calcCurrency(this.bill);
-
+      this.currencyValue = new CurrencyHF();
+      this.calcCurrency();
     });
   }
   onRefresh(){
@@ -40,16 +40,16 @@ export class BillingPageComponent implements OnInit {
         this.isLoaded = true;
       });
   }
-  calcCurrency(bill:Bill){
-    // old conversion
-    // this.euro = bill.value/this.currency.rates['RUB'];
-    // this.dollar = this.euro*this.currency.rates['USD'];
-    this.dollar = this.currency.rates['RUB'];
-    this.euro = this.currency.rates['RUB']/this.currency.rates['EUR'];
+  calcCurrency(){
+    this.currencyValue.dollarCurrency = this.currency.rates['RUB'];
+    this.currencyValue.euroCurrency = this.currency.rates['RUB']/this.currency.rates['EUR'];
+    this.currencyValue.dollarTotal = this.bill.value/this.currencyValue.dollarCurrency;
+    this.currencyValue.euroTotal = this.bill.value/this.currencyValue.euroCurrency;
+    this.currencyValue.date = new Date(this.currency.timestamp*1000);
   }
   onBillChanged(bill:Bill){
     this.bill = bill;
-    this.calcCurrency(bill);
+    this.calcCurrency();
   }
   testUser(){
     this.userService.getAll().subscribe((data:any[])=>{

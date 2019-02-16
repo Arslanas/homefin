@@ -3,6 +3,7 @@ import {NgForm} from "@angular/forms";
 import {Category} from "../../../shared/entity/category.entity";
 import {Bill} from "../../../shared/entity/bill.entity";
 import {BillService} from "../../../shared/service/bill.service";
+import {CurrencyHF} from "../../../shared/entity/appEntity/CurrencyHF";
 
 @Component({
   selector: 'hf-edit-bill-card',
@@ -10,7 +11,6 @@ import {BillService} from "../../../shared/service/bill.service";
   styleUrls: ['./edit-bill-card.component.scss']
 })
 export class EditBillCardComponent implements OnInit {
-
   @Input() bill:Bill;
   @Output() emitter = new EventEmitter<Bill>();
   constructor( private billService: BillService) { }

@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {BillService} from "../../../shared/service/bill.service";
 import {Bill} from "../../../shared/entity/bill.entity";
 import {Observable} from "rxjs/Observable";
+import {CurrencyHF} from "../../../shared/entity/appEntity/CurrencyHF";
 
 @Component({
   selector: 'hf-bill-card',
@@ -9,16 +10,13 @@ import {Observable} from "rxjs/Observable";
   styleUrls: ['./bill-card.component.scss']
 })
 export class BillCardComponent implements OnInit {
+  @Input() currencyValue: CurrencyHF;
+  @Input() bill: Bill;
 
- @Input() bill:Bill;
- @Input() dollar: number;
- @Input() euro: number;
-
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
-    this.dollar = this.bill.value/this.dollar;
-    this.euro = this.bill.value/this.euro;
   }
 
 

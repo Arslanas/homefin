@@ -14,8 +14,8 @@
 <div *ngIf="isLoaded">
   <section class="section">
     <div class="row">
-      <hf-bill-card [bill]="bill" [euro]="euro" [dollar]="dollar"></hf-bill-card>
-      <hf-currency-card [euro]="euro" [dollar]="dollar" [currency]="currency"></hf-currency-card>
+      <hf-bill-card [currencyValue]="currencyValue" [bill]="bill"></hf-bill-card>
+      <hf-currency-card [currencyValue]="currencyValue"></hf-currency-card>
     </div>
     <div class="row">
       <hf-edit-bill-card [bill]="bill" (emitter)="onBillChanged($event)" ></hf-edit-bill-card>

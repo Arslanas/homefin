@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {CurrencyHF} from "../../../shared/entity/appEntity/CurrencyHF";
 
 @Component({
   selector: 'hf-currency-card',
@@ -6,12 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./currency-card.component.scss']
 })
 export class CurrencyCardComponent implements OnInit {
-
-  @Input() currency: any;
-  @Input() dollar: number;
-  @Input() euro: number;
-  modifiedCurrency:any;
-  currencies: string[] = ["USD", "EUR"];
+  @Input() currencyValue: CurrencyHF;
 
   constructor() { }
 

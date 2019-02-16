@@ -17,17 +17,17 @@
           <tr>
             <td>RUB</td>
             <td>1</td>
-            <td></td>
+            <td>{{currencyValue.date | date : 'dd.MM.yyyy'}}</td>
           </tr>
           <tr>
             <td>USD</td>
-            <td>{{dollar}}</td>
-            <td></td>
+            <td>{{currencyValue.dollarCurrency | number:'1.0-2'}} </td>
+            <td>{{currencyValue.date | date : 'dd.MM.yyyy'}}</td>
           </tr>
           <tr>
             <td>EUR</td>
-            <td>{{euro}}</td>
-            <td></td>
+            <td>{{currencyValue.euroCurrency | number:'1.0-2'}}</td>
+            <td>{{currencyValue.date | date : 'dd.MM.yyyy'}}</td>
           </tr>
           <tr>
           </tbody>
