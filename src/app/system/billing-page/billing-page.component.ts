@@ -41,8 +41,11 @@ export class BillingPageComponent implements OnInit {
       });
   }
   calcCurrency(bill:Bill){
-    this.euro = bill.value/this.currency.rates['RUB'];
-    this.dollar = this.euro*this.currency.rates['USD'];
+    // old conversion
+    // this.euro = bill.value/this.currency.rates['RUB'];
+    // this.dollar = this.euro*this.currency.rates['USD'];
+    this.dollar = this.currency.rates['RUB'];
+    this.euro = this.currency.rates['RUB']/this.currency.rates['EUR'];
   }
   onBillChanged(bill:Bill){
     this.bill = bill;

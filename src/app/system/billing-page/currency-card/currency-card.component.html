@@ -17,12 +17,17 @@
           <tr>
             <td>RUB</td>
             <td>1</td>
-            <td>{{modifiedCurrency.date | date:"dd.MM.yyyy"}}</td>
+            <td></td>
           </tr>
-          <tr *ngFor="let c of currencies">
-            <td>{{c}}</td>
-            <td>{{modifiedCurrency.rates[c] | number}}</td>
-            <td>{{modifiedCurrency.date | date:"dd.MM.yyyy"}}</td>
+          <tr>
+            <td>USD</td>
+            <td>{{dollar}}</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>EUR</td>
+            <td>{{euro}}</td>
+            <td></td>
           </tr>
           <tr>
           </tbody>

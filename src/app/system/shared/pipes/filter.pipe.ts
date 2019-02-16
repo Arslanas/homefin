@@ -11,7 +11,7 @@ export class FilterPipe implements PipeTransform{
     if (items.length === 0 || !value){
       return items;
     }
-    return items.filter((i) =>{
+    return items.filter(i =>{
       const t= Object.assign({}, i);
       if(!isNaN(t[field])){
         t[field] += "";

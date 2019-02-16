@@ -48,8 +48,8 @@ export class LoginComponent implements OnInit {
   private warnAboutDelay(){
     setTimeout(()=>
     this.messageDelay = new Message("warning", "Eсли аутентификация длится долго, пожалуйста, обновите страницу - " +
-                                                                               "издержки бесплатного тарифа"), 7000)
-    setTimeout(()=> this.messageDelay = new Message("danger", ""), 12000);
+                                                                               "издержки бесплатного тарифа"), 12000)
+    setTimeout(()=> this.messageDelay = new Message("danger", ""), 17000);
   }
   onSubmit() {
     this.isAuthenticationDialogOpen = false;
